@@ -1,21 +1,17 @@
-var globalFoo
+var PI = Math.PI
 
-exports.setFoo = function(val) {
-    globalFoo = val
+exports.area = function(r){
+    return PI * r * r
 }
 
-exports.returnFoo = function() {
-    return globalFoo
+exports.circumference = function(r){
+    return 2* PI * r
 }
 
 // node REPL:
-// var modFoo = require('./index.js')
-// modFoo.setFoo(42)
-// modFoo.returnFoo()
-// => 42
+// var circle = require('./index')
+// circle.area(4)
+// => 50.26548245743669
 
-// global
-// => we can see our mod Foo module that we imported is available, 
-// but globalFoo is not, because GlobalFoo
-//  was global to this code,
-// not global to the application where we were using it.
+// requiring the http module in the node REPL:
+// var http = require('http')
