@@ -1,26 +1,36 @@
-var welcomeMsg = function() {
-    console.log("Welcome to the Great Underground Empire!");
-}
+// works in the node REPL:
+fs.readFile('zork.txt', 'utf8', function(err,data){
+    console.log(data)
+})
 
-var start = function(callback) {
-    callback();
-}
+//OR 
+fs.readFile('zork.txt', function(err,data){
+    console.log(data.toString())
+})
 
-// start(welcomeMsg);
+// => Lorem ipsum dolor amet health goth cliche craft beer, blog cloud bread air plant slow-carb mumblecore heirloom mixtape. Austin marfa readymade street art affogato. Cred wayfarers authentic, tote bag cloud bread cornhole meggings tumblr pitchfork. Street art portland church-key, snackwave semiotics seitan literally twee chambray farm-to-table heirloom plaid tousled. YOLO master cleanse bicycle rights fingerstache twee pok pok cronut. Health goth hella green juice enamel pin. Synth offal pug, woke ramps brunch keytar banjo shoreditch.
 
-var look = function(dir) {
-    if(dir === 'west') { console.log("There is a small mailbox here."); }
-    if(dir === 'east') { console.log("You are standing next a white house."); }
-}
+// specifying the length of buffer:
+buf = new Buffer(5)
+// => <Buffer 00 00 00 00 00>
+buf.write('hello world')
+//=> 5
+buf.toString()
+// => 'hello'
 
-var walk = function(dir) {
-    if(dir === 'west') { console.log("It is very dark, you are likely to be eaten by a grue!"); }
-    if(dir === 'south') { console.log("You are standing on the edge of a deep chasm."); }
-}
+// using offset:
+buf.write('hello', 2)
+// => 3
+buf.toString()
+// => 'hehel'
 
-var  getInput = function(param, cb) {
-    cb(param)
-}
+//specifying offset (2) + length(1):
+buf.write('xxxx', 2, 1)
+// => 1
+buf.toString()
+// => 'hexel'
 
-// getInput('west', look)
-// => There is a small mailbox here.
+buf.write('yyyy', 2, 1, 'utf8')
+// => 1
+buf.toString()
+// 'heyel'
