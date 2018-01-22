@@ -1,17 +1,14 @@
-var PI = Math.PI
+var net = require('net')
+var server = net.createServer(function(c){
+    console.log('client connected')
+    c.on('data', function(d){
+        console.log('data received: ' + d.toString())
+    })
+    c.on('end', function(){
+        console.log('client disconnected')
+    })
+})
 
-exports.area = function(r){
-    return PI * r * r
-}
-
-exports.circumference = function(r){
-    return 2* PI * r
-}
-
-// node REPL:
-// var circle = require('./index')
-// circle.area(4)
-// => 50.26548245743669
-
-// requiring the http module in the node REPL:
-// var http = require('http')
+server.listen(3000, function(){
+    console.log('server started')
+})
